@@ -1,17 +1,21 @@
 function love.load()
   x = 100
   y = 50
+  speed = 300
 end
 
 function love.update(dt)
   if love.keyboard.isDown("right") then
-    x = x + 100 * dt
-  elseif love.keyboard.isDown("left") then
-    x = x - 100 * dt
-  elseif love.keyboard.isDown("down") then
-    y = y + 100 * dt
-  elseif love.keyboard.isDown("up") then
-    y = y - 100 * dt
+    x = x + speed * dt
+  end
+  if love.keyboard.isDown("left") then
+    x = x - speed * dt
+  end
+  if love.keyboard.isDown("down") then
+    y = y + speed * dt
+  end
+  if love.keyboard.isDown("up") then
+    y = y - speed * dt
   end
 end
 
