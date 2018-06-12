@@ -7,7 +7,7 @@ function love.update()
 end
 
 function love.draw()
-  for k, v in pairs(fruits) do
-    love.graphics.print(v, 100, k * 100)
+  for i = 1, #fruits do
+    love.graphics.print(fruits[i], 100, i * 100)
   end
 end
