@@ -10,7 +10,7 @@ function love.update()
 end
 
 function love.draw()
-  for i = 1, #fruits do
-    love.graphics.print(fruits[i], 100, 100 + 50 * i)
+  for i, fruit in ipairs(fruits) do
+    love.graphics.print(fruit, 100, 100 + 50 * i)
   end
 end
