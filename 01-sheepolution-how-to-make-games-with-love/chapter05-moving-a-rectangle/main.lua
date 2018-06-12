@@ -3,7 +3,7 @@ function love.load()
 end
 
 function love.update(dt)
-  x = x + 5 * dt
+  x = x + 100 * dt
 end
 
 function love.draw()
