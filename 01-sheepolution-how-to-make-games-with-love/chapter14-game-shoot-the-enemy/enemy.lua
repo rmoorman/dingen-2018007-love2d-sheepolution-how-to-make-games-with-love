@@ -2,11 +2,11 @@ Enemy = Object:extend()
 
 function Enemy:new()
   self.image = love.graphics.newImage("media/snake.png")
+  self.width = self.image:getWidth()
+  self.height = self.image:getHeight()
   self.x = 325
   self.y = 450
   self.speed = 100
-  self.width = self.image:getWidth()
-  self.height = self.image:getHeight()
 end
 
 function Enemy:update(dt)

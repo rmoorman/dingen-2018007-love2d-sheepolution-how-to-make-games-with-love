@@ -2,10 +2,23 @@ Player = Object:extend()
 
 function Player:new()
   self.image = love.graphics.newImage("media/panda.png")
-  self.x = 300
-  self.y = 20
   self.width = self.image:getWidth()
+  self.height = self.image:getHeight()
+  self.x = love.graphics.getWidth() / 2 - self.width / 2
+  self.y = 20
   self.speed = 500
+end
+
+function Player:keypressed(key)
+  if key == "space" then
+    self:fireBullet()
+  end
+end
+
+function Player:fireBullet()
+  local x = self.x + self.width / 2
+  local y = self.y + self.height / 2
+  fireBullet(x, y)
 end
 
 function Player:update(dt)
