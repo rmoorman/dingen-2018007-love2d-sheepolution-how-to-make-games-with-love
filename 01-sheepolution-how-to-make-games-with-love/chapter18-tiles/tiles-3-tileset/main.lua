@@ -34,6 +34,32 @@ function love.load()
     {3, 0, 0, 1, 2, 0, 0, 3},
     {4, 6, 6, 5, 4, 6, 6, 5},
   }
+
+  player = {
+    image = love.graphics.newImage("media/player.png"),
+    tile_x = 2,
+    tile_y = 2,
+  }
+end
+
+function love.keypressed(key)
+  local x = player.tile_x
+  local y = player.tile_y
+
+  if key == "left" then
+    x = x - 1
+  elseif key == "right" then
+    x = x + 1
+  elseif key == "up" then
+    y = y - 1
+  elseif key == "down" then
+    y = y + 1
+  end
+
+  if isTileEmpty(x, y) then
+    player.tile_x = x
+    player.tile_y = y
+  end
 end
 
 function love.draw()
@@ -44,4 +70,10 @@ function love.draw()
       end
     end
   end
+
+  love.graphics.draw(player.image, player.tile_x * tile_width, player.tile_y * tile_height)
+end
+
+function isTileEmpty(x, y)
+  return tilemap[y][x] == 0
 end
