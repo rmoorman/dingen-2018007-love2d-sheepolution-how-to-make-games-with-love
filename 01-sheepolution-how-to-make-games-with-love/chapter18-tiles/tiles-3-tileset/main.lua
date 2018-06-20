@@ -1,6 +1,6 @@
 function love.load()
   tileset = love.graphics.newImage("media/tileset.png")
-  
+
   -- image dimensions for quads
   local tileset_width = tileset:getWidth()
   local tileset_height = tileset:getHeight()
@@ -8,10 +8,10 @@ function love.load()
   local tileset_rows = 2
   local tile_bleed = 1
   local tile_bleed_total = tile_bleed * 2
-  
+
   tile_width = (tileset_width / tileset_cols) - tile_bleed_total
   tile_height = (tileset_height / tileset_rows) - tile_bleed_total
-  
+
   quads = {}
   for i = 0, tileset_rows - 1 do
     for j = 0, tileset_cols - 1 do
@@ -40,6 +40,16 @@ function love.load()
     tile_x = 2,
     tile_y = 2,
   }
+
+  dot = {
+    image = love.graphics.newImage("media/kenney_sokobanpack.environment_05.png"),
+    tile_x = 5,
+    tile_y = 5,
+    offset_x = -15,
+    offset_y = -15,
+  }
+
+  dot_eaten = false
 end
 
 function love.keypressed(key)
@@ -60,6 +70,10 @@ function love.keypressed(key)
     player.tile_x = x
     player.tile_y = y
   end
+
+  if dot.tile_x == x and dot.tile_y == y then
+    dot_eaten = true
+  end
 end
 
 function love.draw()
@@ -72,6 +86,12 @@ function love.draw()
   end
 
   love.graphics.draw(player.image, player.tile_x * tile_width, player.tile_y * tile_height)
+
+  if dot_eaten then
+    love.graphics.print("dot eaten")
+  else
+    love.graphics.draw(dot.image, dot.tile_x * tile_width + dot.offset_x, dot.tile_y * tile_height + dot.offset_y)
+  end
 end
 
 function isTileEmpty(x, y)
